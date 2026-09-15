@@ -4,4 +4,6 @@ import type { QuoteContent } from "./types";
 export const quote: QuoteContent = {
   text: "Coding is to programming what typing is to writing",
   author: "Leslie Lamport",
+  rain: true, // falling katakana animation in the background
+  rainSpeed: 0.3, // 0.5 = half speed, 2 = double
 };

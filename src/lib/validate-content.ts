@@ -105,6 +105,18 @@ export function validateContent(content: Content): void {
     errors.push(`hero.illustration.speed: ${speed} must be between 0 (exclusive) and 10`);
   }
 
+  const rainSpeed = content.quote.rainSpeed;
+  if (rainSpeed !== undefined && !(rainSpeed > 0 && rainSpeed <= 10)) {
+    errors.push(`quote.rainSpeed: ${rainSpeed} must be between 0 (exclusive) and 10`);
+  }
+
+  for (const section of ["about", "skills", "experience", "projects", "languages", "contact"] as const) {
+    const patternSpeed = content[section].background?.speed;
+    if (patternSpeed !== undefined && !(patternSpeed > 0 && patternSpeed <= 10)) {
+      errors.push(`${section}.background.speed: ${patternSpeed} must be between 0 (exclusive) and 10`);
+    }
+  }
+
   if (content.hero.stats.length > 4) {
     warnings.push("hero.stats has more than 4 items; they may not fit on small screens");
   }

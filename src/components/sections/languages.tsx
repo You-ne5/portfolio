@@ -16,7 +16,7 @@ const LEVEL: Record<LanguageLevel, { label: string; className: string }> = {
 
 export function LanguagesSection({ languages, tone }: { languages: LanguagesContent; tone: Tone }) {
   return (
-    <Section id="languages" tone={tone}>
+    <Section id="languages" tone={tone} background={languages.background}>
       <Container className="py-20 sm:py-28">
         <SectionHeading heading={languages.heading} className="mb-12 sm:mb-16" />
         <ul className="grid grid-cols-1 gap-4 min-[400px]:grid-cols-2 sm:gap-6 lg:grid-cols-4">

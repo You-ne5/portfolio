@@ -9,10 +9,14 @@ export const skills: SkillsContent = {
     title: "Technical Arsenal",
   },
 
+  // Animated background: pattern "grid" | "lines" | "scanlines" | "dots" | "none",
+  // intensity "subtle" | "medium" | "strong", speed 0.5 = half, 2 = double. Remove to turn it off.
+  background: { pattern: "dots", intensity: "subtle", speed: 1 },
+
   categories: [
     {
       name: "Languages",
-      description: "Core compiled and interpreted programming languages",
+      description: "Programming languages I know",
       items: [
         { name: "Dart", icon: "dart" },
         { name: "Typescript", icon: "typescript" },
@@ -25,9 +29,10 @@ export const skills: SkillsContent = {
     },
     {
       name: "Frameworks & Libraries",
-      description: "Cross-platform UI engines and scientific tooling",
+      description: "Frontend, Backend, Mobile and more",
       items: [
         { name: "Flutter", icon: "flutter" },
+        { name: "NextJs", icon: "nextdotjs" },
         { name: "NestJs", icon: "nestjs" },
         { name: "OpenCV", icon: "opencv" },
       ],
@@ -37,21 +42,22 @@ export const skills: SkillsContent = {
       description: "Real-time sync, relational, and ORM storage layers",
       items: [
         { name: "Firebase", icon: "firebase" },
-        { name: "SQLite", icon: "sqlite" },
         { name: "Prisma", icon: "prisma" },
+        { name: "SQLite", icon: "sqlite" },
+        { name: "postgresql", icon: "postgresql" },
       ],
     },
     {
       name: "Tools",
-      description: "Operating systems, design tools, and engineering workflows",
+      description: "Operating systems, design tools, AI tools, and project management",
       items: [
         { name: "Linux", icon: "linux" },
+        { name: "Claude Code", icon: "claudecode" },
         { name: "Figma", icon: "figma" },
         { name: "VS Code", icon: CodeXml },
         { name: "Git / GitHub", icon: "git" },
         { name: "Notion", icon: "notion" },
         { name: "Obsidian", icon: "obsidian" },
-        { name: "Claude Code", icon: "claudecode" },
 
       ],
     },

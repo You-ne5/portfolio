@@ -1,3 +1,5 @@
+import { seededRandom } from "@/lib/seeded-random";
+
 export const ASCII_COLS = 60;
 export const ASCII_ROWS = 36;
 
@@ -35,16 +37,6 @@ function rotateZ([x, y, z]: Vec, angle: number): Vec {
 }
 
 const LIGHT = normalize([-0.55, 0.6, 0.6]);
-
-// Deterministic so the server-rendered frame matches the first client frame.
-function seededRandom(seed: number) {
-  return () => {
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
 
 const STARS = (() => {
   const random = seededRandom(7);

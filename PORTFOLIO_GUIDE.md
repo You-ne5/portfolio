@@ -73,6 +73,25 @@ sections: {
 - A section with an empty list (no projects, no languages…) is hidden automatically too.
 - If `projects` is hidden, the "View My Work" button (which points to `#projects`) disappears and project detail pages are not built.
 
+### Background patterns
+
+About, Skills, Experience, Projects, Languages and Contact can each show an animated red texture behind their content. Add a `background` line to that section's content file:
+
+```ts
+background: { pattern: "grid", intensity: "medium", speed: 1 },
+```
+
+| Field | Values | Default |
+| --- | --- | --- |
+| `pattern` | `"grid"` (squares with blinking cells), `"lines"` (sliding diagonal stripes), `"scanlines"` (CRT lines with a sweeping band), `"dots"` (dot matrix with a passing wave), `"none"` | — |
+| `intensity` | `"subtle"`, `"medium"`, `"strong"` | `"medium"` |
+| `speed` | multiplier: `0.5` = half, `2` = double (must be > 0 and ≤ 10) | `1` |
+
+- Remove the line, or use `pattern: "none"`, to turn the texture off.
+- Patterns fade out toward the section's edges, and are a bit softer in light mode.
+- Visitors with "reduce motion" turned on see the pattern without animation.
+- Patterns are pure CSS: tweak their colors, sizes and timings in the "Section background patterns" block of `src/app/globals.css`.
+
 ## 5. Section reference
 
 Text fields accept any string. `?` means optional: delete the line to remove that element from the page.
@@ -101,6 +120,7 @@ role: "Junior Software Developer",
 tagline: "…",
 primaryCta: { label: "View My Work", href: "#projects" },  // href: "#section-id", a URL, or a /public file
 cv: { href: "/cv.pdf", label: "Download CV" },             // remove to hide the button
+email: { address: "you@example.com", label: "Email me" },  // email card at the bottom-right, above the quote; remove to hide
 stats: [
   { value: "4+", label: "Years of experience" },           // 1–4 stats fit best
 ],
@@ -122,7 +142,11 @@ Section ids you can link to with `#`: `quote`, `about`, `skills`, `experience`, 
 ```ts
 text: "Coding is to programming what typing is to writing",
 author: "Leslie Lamport",   // optional — remove to show the quote alone
+rain: true,                 // falling katakana "terminal rain" behind the quote; false turns it off
+rainSpeed: 1,               // 0.5 = half speed, 2 = double (must be > 0 and ≤ 10)
 ```
+
+The rain pauses when it's scrolled out of view or the tab is hidden, and shows a still frame to visitors with "reduce motion" turned on.
 
 It shares the hero's background, so hiding it with `sections.quote: false` doesn't change the colors of the sections below.
 

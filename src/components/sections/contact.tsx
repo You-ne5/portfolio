@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/section-heading";
 
 export function ContactSection({ contact, tone }: { contact: ContactContent; tone: Tone }) {
   return (
-    <Section id="contact" tone={tone}>
+    <Section id="contact" tone={tone} background={contact.background}>
       <div
         aria-hidden
         className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[350px] w-[min(600px,100%)] -translate-x-1/2 rounded-full bg-accent opacity-[calc(var(--glow-opacity)*0.6)] blur-[140px]"

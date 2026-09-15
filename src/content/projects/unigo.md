@@ -10,7 +10,7 @@ Unigo is a production cross-platform carpooling application built for students. 
 
 ## Security
 
-The app ships with hardened defaults:
+Implemented the following security measures:
 
 1. Code obfuscation on release builds
 2. Firebase security rules scoped per user

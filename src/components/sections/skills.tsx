@@ -6,7 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function SkillsSection({ skills, tone }: { skills: SkillsContent; tone: Tone }) {
   return (
-    <Section id="skills" tone={tone}>
+    <Section id="skills" tone={tone} background={skills.background}>
       <Container className="py-20 sm:py-28">
         <SectionHeading heading={skills.heading} className="mb-12 sm:mb-16" />
 

@@ -7,7 +7,7 @@ const RING: Record<Tone, string> = { base: "ring-canvas", alt: "ring-canvas-alt"
 
 export function ExperienceSection({ experience, tone }: { experience: ExperienceContent; tone: Tone }) {
   return (
-    <Section id="experience" tone={tone}>
+    <Section id="experience" tone={tone} background={experience.background}>
       <Container className="py-20 sm:py-28">
         <SectionHeading heading={experience.heading} className="mb-12 sm:mb-16" />
 

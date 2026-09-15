@@ -11,6 +11,9 @@ export const hero: HeroContent = {
   // Put your CV at public/cv.pdf, then uncomment:
   cv: { href: "/cv_mohammedi_younes.pdf", label: "Download CV" },
 
+  // Email card at the bottom-right of the hero, just above the quote. Remove to hide it.
+  // email: { address: "younesmpro21@gmail.com", label: "Email me" },
+
   stats: [
     { value: "4+", label: "Years of experience" },
     { value: "10+", label: "Projects built" },

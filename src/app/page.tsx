@@ -16,6 +16,9 @@ import { getVisibleSections, isLinkVisible } from "@/lib/sections";
 // These sections share the background of the section above instead of starting a new alternating band.
 const SHARES_PREVIOUS_TONE: SectionKey[] = ["quote"];
 
+// Together these fill the first screen: the hero stretches and the quote sits at the bottom edge.
+const FIRST_SCREEN: SectionKey[] = ["hero", "quote"];
+
 export default function Home() {
   const content = getContent();
   const { site, hero } = content;
@@ -51,9 +54,17 @@ export default function Home() {
     }
   };
 
+  const firstScreen = visible.includes("hero") ? sections.filter(({ key }) => FIRST_SCREEN.includes(key)) : [];
+  const rest = sections.filter((section) => !firstScreen.includes(section));
+
   return (
     <>
-      <main>{sections.map(({ key, tone }) => renderSection(key, tone))}</main>
+      <main>
+        {firstScreen.length > 0 && (
+          <div className="flex min-h-svh flex-col">{firstScreen.map(({ key, tone }) => renderSection(key, tone))}</div>
+        )}
+        {rest.map(({ key, tone }) => renderSection(key, tone))}
+      </main>
       <Footer site={site} tone={sections.at(-1)?.tone ?? "base"} />
     </>
   );

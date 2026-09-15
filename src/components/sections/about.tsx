@@ -9,7 +9,7 @@ export function AboutSection({ about, tone }: { about: AboutContent; tone: Tone 
   const paragraphs = Array.isArray(about.bio) ? about.bio : [about.bio];
 
   return (
-    <Section id="about" tone={tone}>
+    <Section id="about" tone={tone} background={about.background}>
       <Container className="py-20 sm:py-24">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
           <div className="flex justify-center lg:col-span-4 lg:justify-start">

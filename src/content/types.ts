@@ -32,6 +32,19 @@ export interface SectionHeadingContent {
   description?: string;
 }
 
+export type BackgroundPattern = "none" | "grid" | "lines" | "scanlines" | "dots";
+export type PatternIntensity = "subtle" | "medium" | "strong";
+
+/** Animated red texture behind a section's content */
+export interface SectionBackground {
+  /** "grid" squares · "lines" diagonal stripes · "scanlines" CRT lines · "dots" dot matrix · "none" */
+  pattern: BackgroundPattern;
+  /** Default "medium" */
+  intensity?: PatternIntensity;
+  /** Animation speed multiplier: 0.5 = half, 2 = double (default 1) */
+  speed?: number;
+}
+
 export interface SiteConfig {
   name: string;
   url: `https://${string}`;
@@ -62,6 +75,8 @@ export interface HeroContent {
   tagline: string;
   primaryCta?: { label: string; href: Href };
   cv?: { href: PublicPath; label?: string };
+  /** Small email card at the bottom-right of the hero, just above the quote */
+  email?: { address: string; label?: string };
   stats: { value: string; label: string }[];
   /** Animated ASCII planet card on the right of the hero */
   illustration?: {
@@ -84,6 +99,7 @@ export interface AboutContent {
   bio: string | string[];
   portrait?: ImageRef;
   focus: { label: string; icon?: IconSource }[];
+  background?: SectionBackground;
 }
 
 export interface Skill {
@@ -102,6 +118,7 @@ export interface SkillCategory {
 export interface SkillsContent {
   heading: SectionHeadingContent;
   categories: SkillCategory[];
+  background?: SectionBackground;
 }
 
 export interface ExperienceItem {
@@ -116,6 +133,7 @@ export interface ExperienceItem {
 export interface ExperienceContent {
   heading: SectionHeadingContent;
   items: ExperienceItem[];
+  background?: SectionBackground;
 }
 
 export interface Project {
@@ -133,6 +151,7 @@ export interface Project {
 export interface ProjectsContent {
   heading: SectionHeadingContent;
   items: Project[];
+  background?: SectionBackground;
 }
 
 export type LanguageLevel = "native" | "fluent" | "intermediate" | "beginner";
@@ -148,6 +167,7 @@ export interface SpokenLanguage {
 export interface LanguagesContent {
   heading: SectionHeadingContent;
   items: SpokenLanguage[];
+  background?: SectionBackground;
 }
 
 export interface ContactLink {
@@ -159,11 +179,16 @@ export interface ContactLink {
 export interface ContactContent {
   heading: SectionHeadingContent;
   links: ContactLink[];
+  background?: SectionBackground;
 }
 
 export interface QuoteContent {
   text: string;
   author?: string;
+  /** Falling katakana "terminal rain" behind the quote (default true) */
+  rain?: boolean;
+  /** Rain speed multiplier: 0.5 = half, 2 = double (default 1) */
+  rainSpeed?: number;
 }
 
 export interface NavContent {

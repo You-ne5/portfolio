@@ -4,7 +4,7 @@ import type { ExperienceContent } from "./types";
 export const experience: ExperienceContent = {
   heading: {
     eyebrow: "Experience",
-    title: "Professional Engineering Journey",
+    title: "My experience",
   },
 
   items: [
@@ -29,7 +29,7 @@ export const experience: ExperienceContent = {
     },
     {
       company: "Djezzy",
-      role: "Engineering Intern",
+      role: "Initiation internship",
       period: "June – July 2025",
       highlights: [
         "Explored telecom IT infrastructure across Big Data, web, mobile, and applied AI systems.",

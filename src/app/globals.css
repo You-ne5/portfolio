@@ -2,6 +2,9 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+/* Desktop layout on a short screen (e.g. 1366×768 laptops): tightens the hero so it and the quote fit the first screen. */
+@custom-variant short (@media (min-width: 64rem) and (max-height: 820px));
+
 /* Theme colors — edit these to restyle the site. Keep CHIP_SURFACE in src/lib/theme.ts in sync with --surface. */
 :root,
 [data-theme="light"] {
@@ -72,4 +75,167 @@ body {
 
 ::selection {
   @apply bg-accent/30 text-fg;
+}
+
+/* Section background patterns, rendered by src/components/ui/section-pattern.tsx.
+   --pattern-intensity and --pattern-speed come from each section's content file. */
+:root,
+[data-theme="light"] {
+  --pattern-strength: 0.75;
+}
+
+[data-theme="dark"] {
+  --pattern-strength: 1;
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: calc(var(--pattern-intensity, 0.65) * var(--pattern-strength, 1));
+  -webkit-mask-image: radial-gradient(closest-side, #000 35%, transparent);
+  mask-image: radial-gradient(closest-side, #000 35%, transparent);
+}
+
+.pattern::before,
+.pattern::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Diagonal lines sliding sideways. 34px = one stripe period (24px) measured horizontally at 45°. */
+.pattern-lines::before {
+  inset: -64px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--accent) 30%, transparent) 0 1px,
+    transparent 1px 24px
+  );
+  animation: pattern-lines-slide calc(8s / var(--pattern-speed, 1)) linear infinite;
+}
+
+@keyframes pattern-lines-slide {
+  to {
+    transform: translateX(33.94px);
+  }
+}
+
+/* CRT scanlines that roll slowly, plus a brighter band sweeping down. */
+.pattern-scanlines::before {
+  inset: -8px 0 0 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--accent) 24%, transparent) 0 1px,
+    transparent 1px 4px
+  );
+  animation: pattern-scanlines-roll calc(2s / var(--pattern-speed, 1)) linear infinite;
+}
+
+.pattern-scanlines::after {
+  inset: 0 0 auto 0;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--accent) 18%, transparent), transparent);
+  transform: translateY(-100%);
+  animation: pattern-scanlines-sweep calc(9s / var(--pattern-speed, 1)) ease-in-out infinite;
+}
+
+@keyframes pattern-scanlines-roll {
+  to {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes pattern-scanlines-sweep {
+  0% {
+    transform: translateY(-100%);
+  }
+  55%,
+  100% {
+    transform: translateY(340%);
+  }
+}
+
+/* Square grid with random cells blinking. Cell size must match GRID_CELL_SIZE in section-pattern.tsx. */
+.pattern-grid::before {
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--accent) 34%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--accent) 34%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.pattern-cell {
+  position: absolute;
+  width: 39px;
+  height: 39px;
+  margin: 1px 0 0 1px;
+  background: color-mix(in oklab, var(--accent) 55%, transparent);
+  opacity: 0;
+  animation-name: pattern-cell-blink;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pattern-cell-blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0;
+  }
+}
+
+/* Dot matrix with a brighter wave passing across. steps() keeps repaints to a few per second. */
+.pattern-dots::before,
+.pattern-dots::after {
+  inset: 0;
+  background-size: 20px 20px;
+}
+
+.pattern-dots::before {
+  background-image: radial-gradient(circle, color-mix(in oklab, var(--accent) 45%, transparent) 1.2px, transparent 1.8px);
+}
+
+.pattern-dots::after {
+  background-image: radial-gradient(circle, var(--accent) 1.4px, transparent 2px);
+  -webkit-mask-image: linear-gradient(100deg, transparent 40%, #000 50%, transparent 60%);
+  mask-image: linear-gradient(100deg, transparent 40%, #000 50%, transparent 60%);
+  -webkit-mask-size: 300% 100%;
+  mask-size: 300% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  animation: pattern-dots-wave calc(10s / var(--pattern-speed, 1)) steps(50) infinite;
+}
+
+@keyframes pattern-dots-wave {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0% 0;
+    mask-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pattern::before,
+  .pattern::after,
+  .pattern-cell {
+    animation: none;
+  }
+  .pattern-cell {
+    opacity: 0.5;
+  }
+  .pattern-scanlines::after,
+  .pattern-dots::after {
+    display: none;
+  }
 }
