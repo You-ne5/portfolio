@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* Theme colors — edit these to restyle the site. Keep CHIP_SURFACE in src/lib/theme.ts in sync with --surface. */
+:root,
+[data-theme="light"] {
+  --canvas: #fafafa;
+  --canvas-alt: #f1f1f3;
+  --surface: #ffffff;
+  --line: #e4e4e7;
+  --fg: #121216;
+  --muted: #5c5c66;
+  --accent: #c62839;
+  --accent-hover: #a81f2f;
+  --on-accent: #ffffff;
+  --glow-opacity: 0.12;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --canvas: #0b0b0d;
+  --canvas-alt: #0e0e11;
+  --surface: #16161a;
+  --line: #242428;
+  --fg: #f5f5f5;
+  --muted: #9a9aa2;
+  --accent: #e63946;
+  --accent-hover: #d52b38;
+  --on-accent: #ffffff;
+  --glow-opacity: 0.25;
+  color-scheme: dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: var(--canvas);
+  --color-canvas-alt: var(--canvas-alt);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  /* Fonts: body/UI text (font-sans, font-mono) and big pixel headings (font-display). Loaded in src/app/layout.tsx. */
+  --font-sans: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-display: var(--font-vt323), ui-monospace, monospace;
+  --radius-card: 7px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --animate-blink: blink 1.1s steps(1, end) infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-canvas text-fg font-sans antialiased;
+  font-variant-ligatures: none;
+}
+
+::selection {
+  @apply bg-accent/30 text-fg;
 }
