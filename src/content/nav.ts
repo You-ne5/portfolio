@@ -10,4 +10,5 @@ export const nav: NavContent = {
     { label: "Projects", href: "#projects" },
   ],
   cta: { label: "Contact", href: "#contact" }, // remove to hide the button
+  glitchSpeed: 1.2, // glitch effect on link hover: 0.5 = half speed, 2 = double
 };

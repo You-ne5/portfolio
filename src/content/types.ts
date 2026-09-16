@@ -198,6 +198,8 @@ export interface NavContent {
   links: { label: string; href: Href }[];
   /** Button on the right, next to the theme toggle */
   cta?: { label: string; href: Href };
+  /** Speed of the glitch effect when hovering a link: 0.5 = half, 2 = double (default 1) */
+  glitchSpeed?: number;
 }
 
 export interface Content {

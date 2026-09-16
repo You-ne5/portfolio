@@ -77,6 +77,93 @@ body {
   @apply bg-accent/30 text-fg;
 }
 
+/* Glitch effect for the navbar links (src/components/navbar.tsx).
+   Needs data-text="<label>"; --glitch-speed comes from nav.ts. */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.glitch:hover::before,
+.glitch:focus-visible::before {
+  color: var(--accent);
+  animation: glitch-top calc(0.5s / var(--glitch-speed, 1)) steps(2, end) infinite;
+}
+
+.glitch:hover::after,
+.glitch:focus-visible::after {
+  color: var(--fg);
+  animation: glitch-bottom calc(0.7s / var(--glitch-speed, 1)) steps(2, end) infinite;
+}
+
+@keyframes glitch-top {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(0 0 55% 0);
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-2px, -1px);
+    clip-path: inset(0 0 55% 0);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(2px, 1px);
+    clip-path: inset(8% 0 45% 0);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-1px, 0);
+    clip-path: inset(0 0 70% 0);
+  }
+}
+
+@keyframes glitch-bottom {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    clip-path: inset(55% 0 0 0);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(2px, 1px);
+    clip-path: inset(55% 0 0 0);
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-2px, -1px);
+    clip-path: inset(70% 0 0 0);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(1px, 0);
+    clip-path: inset(45% 0 8% 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch:hover::before,
+  .glitch:focus-visible::before,
+  .glitch:hover::after,
+  .glitch:focus-visible::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 /* Section background patterns, rendered by src/components/ui/section-pattern.tsx.
    --pattern-intensity and --pattern-speed come from each section's content file. */
 :root,

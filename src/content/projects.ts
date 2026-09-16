@@ -21,7 +21,7 @@ export const projects: ProjectsContent = {
       category: "Mobile App",
       summary:
         "carpooling application with Google maps integration, Bloc state management, and Firebase security.",
-      tags: ["Flutter", "Bloc", "Firebase", "Google maps api"],
+      tags: ["Flutter", "Bloc", "Firebase", "Google maps API"],
       image: {
         src: "/projects/unigo/iphone-multiple-screens-mockup.png",
         alt: "Unigo app on three phones: welcome screen, sign-up form, and the blue Unigo logo",

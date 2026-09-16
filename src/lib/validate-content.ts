@@ -105,6 +105,11 @@ export function validateContent(content: Content): void {
     errors.push(`hero.illustration.speed: ${speed} must be between 0 (exclusive) and 10`);
   }
 
+  const glitchSpeed = content.nav.glitchSpeed;
+  if (glitchSpeed !== undefined && !(glitchSpeed > 0 && glitchSpeed <= 10)) {
+    errors.push(`nav.glitchSpeed: ${glitchSpeed} must be between 0 (exclusive) and 10`);
+  }
+
   const rainSpeed = content.quote.rainSpeed;
   if (rainSpeed !== undefined && !(rainSpeed > 0 && rainSpeed <= 10)) {
     errors.push(`quote.rainSpeed: ${rainSpeed} must be between 0 (exclusive) and 10`);

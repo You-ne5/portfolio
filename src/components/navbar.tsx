@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import type { NavContent, SectionKey, ThemePreference } from "@/content/types";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { isLinkVisible } from "@/lib/sections";
@@ -17,6 +18,7 @@ export function Navbar({
 }) {
   const links = nav.links.filter((link) => isLinkVisible(link.href, visibleSections));
   const cta = nav.cta && isLinkVisible(nav.cta.href, visibleSections) ? nav.cta : undefined;
+  const glitchSpeed = { "--glitch-speed": nav.glitchSpeed ?? 1 } as CSSProperties;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line/60 bg-canvas/70 backdrop-blur-md">
@@ -32,12 +34,13 @@ export function Navbar({
             </span>
           </Link>
           {links.length > 0 && (
-            <ul className="hidden items-center gap-6 md:flex">
+            <ul className="hidden items-center gap-6 md:flex" style={glitchSpeed}>
               {links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={toHref(link.href)}
-                    className="font-mono text-sm uppercase tracking-widest text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
+                    data-text={link.label}
+                    className="glitch font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-none"
                   >
                     {link.label}
                   </a>
@@ -51,7 +54,7 @@ export function Navbar({
           {cta && (
             <a
               href={toHref(cta.href)}
-              className="rounded-card border border-accent/60 px-3.5 py-1.5 font-mono text-sm uppercase tracking-widest text-fg transition-colors hover:border-accent hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="rounded-card border border-accent/60 px-3.5 py-1.5 font-mono text-xs uppercase tracking-widest text-fg transition-colors hover:border-accent hover:bg-accent/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               {cta.label}
             </a>

@@ -105,6 +105,7 @@ links: [
   { label: "Projects", href: "#projects" },
 ],
 cta: { label: "Contact", href: "#contact" },     // button next to the theme toggle; remove to hide it
+glitchSpeed: 1,                                  // speed of the glitch effect when hovering a link: 0.5 = half, 2 = double
 ```
 
 - Links (and the button) pointing to a hidden section are removed automatically.

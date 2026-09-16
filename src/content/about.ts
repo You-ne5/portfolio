@@ -12,7 +12,7 @@ export const about: AboutContent = {
 
   bio: "Spent 4+ years building across mobile, desktop, web, and automation. Worked on Web, Desktop, mobile, and image processing projects. Detail-oriented, comfortable working solo (3+ years freelancing) or in a team (project lead on a 6-person team).",
 
-  portrait: { src: "/images/portrait.jpg", alt: "Portrait of Younes Mohammedi" }, // 4:5
+  portrait: { src: "/images/portrait.jpg", alt: "Portrait of Youn" }, // 4:5
 
   focus: [
     { label: "Mobile & Desktop", icon: Smartphone },

@@ -3,17 +3,17 @@ import type { SiteConfig } from "./types";
 export const site: SiteConfig = {
   name: "Younes Mohammedi",
   // TODO: replace with your real Vercel URL or custom domain (used for social preview links)
-  url: "https://younes-mohammedi.vercel.app",
+  url: "https://younes-mh.vercel.app/",
   lang: "en",
 
   meta: {
-    title: "Younes Mohammedi — Junior Software Developer",
+    title: "Younes Mohammedi — Fullstack Developer",
     titleTemplate: "%s | Younes Mohammedi",
     description:
       "Junior software developer building mobile, desktop, and automation solutions with Flutter and Python.",
     // ogImage: "/og.png", // 1200×630 image placed at public/og.png
     favicon: "/favicon.ico",
-    keywords: ["Younes Mohammedi", "Flutter developer", "Python", "portfolio", "ESI Alger"],
+    keywords: ["Younes Mohammedi", "Flutter developer", "Python", "portfolio", "ESI Alger", "Mobile developer"],
   },
 
   // "dark" | "light" | "system" — what first-time visitors see
@@ -32,7 +32,7 @@ export const site: SiteConfig = {
   },
 
   footer: {
-    copyright: "All rights reserved. Built with precision.",
+    copyright: "All rights reserved.",
     note: "UTC+1 • Let's build something",
   },
 };
