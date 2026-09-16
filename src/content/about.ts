@@ -15,8 +15,8 @@ export const about: AboutContent = {
   portrait: { src: "/images/portrait.jpg", alt: "Portrait of Younes Mohammedi" }, // 4:5
 
   focus: [
-    { label: "Mobile & Desktop (Flutter)", icon: Smartphone },
+    { label: "Mobile & Desktop", icon: Smartphone },
     { label: "Backend development", icon: Terminal },
-    { label: "Frontend", icon: Pen},
+    { label: "Frontend development", icon: Pen},
   ],
 };
