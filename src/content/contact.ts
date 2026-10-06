@@ -5,7 +5,7 @@ export const contact: ContactContent = {
   heading: {
     eyebrow: "Get in touch",
     title: "Let's build something together",
-    description: "Available for mobile & desktop engineering, automation pipelines, and technical collaboration.",
+    description: "Available for mobile and fullstack web development.",
   },
 
   links: [
