@@ -6,11 +6,13 @@ import { ImageFrame } from "@/components/ui/image-frame";
 
 export function ProjectCard({ project, linkToDetails }: { project: Project; linkToDetails: boolean }) {
   const detailsHref = linkToDetails && project.details ? `/projects/${project.details}` : undefined;
+  const cardHref = detailsHref ?? project.link;
+  const cardLinkClassName = "card-link outline-none after:absolute after:inset-0 after:content-['']";
 
   return (
     <article
       className={`group relative flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface transition-all duration-300 ${
-        detailsHref
+        cardHref
           ? "hover:border-accent hover:shadow-[0_0_20px_rgba(230,57,70,0.2)] has-[.card-link:focus-visible]:border-accent has-[.card-link:focus-visible]:ring-2 has-[.card-link:focus-visible]:ring-accent"
           : ""
       }`}
@@ -46,9 +48,13 @@ export function ProjectCard({ project, linkToDetails }: { project: Project; link
 
         <h3 className="mb-2 font-display text-3xl leading-none">
           {detailsHref ? (
-            <Link href={detailsHref} className="card-link outline-none after:absolute after:inset-0 after:content-['']">
+            <Link href={detailsHref} className={cardLinkClassName}>
               {project.title}
             </Link>
+          ) : project.link ? (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className={cardLinkClassName}>
+              {project.title}
+            </a>
           ) : (
             project.title
           )}

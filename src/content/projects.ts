@@ -1,7 +1,8 @@
 import type { ProjectsContent } from "./types";
 
 // image:   cover in /public, 16:9 — e.g. { src: "/projects/unigo/cover.png", alt: "…" }
-// link:    external URL opened by the ↗ arrow (GitHub, Play Store, live site…)
+// link:    external URL opened by the ↗ arrow (GitHub, Play Store, live site…);
+//          without "details", the whole card opens it
 // details: slug of src/content/projects/<slug>.md — the card then opens /projects/<slug>
 export const projects: ProjectsContent = {
 
@@ -16,6 +17,18 @@ export const projects: ProjectsContent = {
   },
 
   items: [
+    {
+      title: "VocabDB",
+      category: "Cross platform (web + android)",
+      summary:
+        "Application for language learners: store, practice, and manage all your vocabulary from one place.",
+      tags: ["NextJs", "Supabase", "Capacitor"],
+      image: {
+        src: "/projects/vocab-db/vocab-db-cover.png",
+        alt: "VocabDB logo above a laptop showing the dashboard and a phone showing a German flashcard",
+      },
+      link: "https://vocab-db.vercel.app",
+    },
     {
       title: "Unigo Carpool",
       category: "Mobile App",
