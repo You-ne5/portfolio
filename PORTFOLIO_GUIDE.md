@@ -197,8 +197,15 @@ Entries appear in the order written, so put the newest first.
   period: "Sept 2025 – Feb 2026",         // free text
   location: "Algiers, Algeria",           // optional
   highlights: ["Did X…", "Built Y…"],
+  attachment: { href: "/experience/unigo.pdf", label: "View certificate" }, // optional, see below
 },
 ```
+
+- **With `attachment`:** the card shows a button that opens the file in a new tab. Use it for internship certificates or reference letters.
+- Put the file in `public/experience/` and write its path from the site root (`/experience/unigo.pdf`). A Google Drive or other `https://` link also works.
+- Local files must be `.pdf`, `.png`, `.jpg`, `.jpeg` or `.webp`. The build fails if the file is missing or has another extension.
+- `label` defaults to "View certificate".
+- Everything in `public/` is public and stays in the git history. Black out ID numbers and other personal data before adding a file.
 
 ### Projects (`projects.ts`)
 

@@ -16,6 +16,7 @@ export const experience: ExperienceContent = {
         "Worked on the backend of a mobile application using nestJs, Prisma and Postgres",
         "Worked on the backend of a dashboard tool using expressJs",
       ],
+      attachment: { href: "/experience/v-eye.pdf" },
     },
     {
       company: "Unigo",

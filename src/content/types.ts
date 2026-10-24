@@ -128,6 +128,12 @@ export interface ExperienceItem {
   period: string;
   location?: string;
   highlights: string[];
+  /** File shown by a button on the card, e.g. an internship certificate: PDF, PNG, JPG or WebP. Opens in a new tab. */
+  attachment?: {
+    href: PublicPath | ExternalUrl;
+    /** Defaults to "View certificate" */
+    label?: string;
+  };
 }
 
 export interface ExperienceContent {

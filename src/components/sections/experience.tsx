@@ -1,4 +1,6 @@
+import { ExternalLink, FileText } from "lucide-react";
 import type { ExperienceContent } from "@/content/types";
+import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { Section, type Tone } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -54,6 +56,22 @@ export function ExperienceSection({ experience, tone }: { experience: Experience
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {item.attachment && (
+                  <div className="mt-5">
+                    <ButtonLink
+                      href={item.attachment.href}
+                      variant="outline"
+                      size="sm"
+                      newTab
+                      ariaLabel={`${item.attachment.label ?? "View certificate"}, ${item.company} (opens in a new tab)`}
+                    >
+                      <FileText aria-hidden className="size-4" />
+                      {item.attachment.label ?? "View certificate"}
+                      <ExternalLink aria-hidden className="size-3.5 text-muted" />
+                    </ButtonLink>
+                  </div>
                 )}
               </div>
             </li>

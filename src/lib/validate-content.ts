@@ -9,6 +9,7 @@ const PUBLIC_DIR = path.join(process.cwd(), "public");
 const LOCAL_FILE = /^\/(?!\/)[^?#]*\.[a-z0-9]+(?:[?#].*)?$/i;
 const HEX = /^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const VIEWABLE_FILE = /\.(?:pdf|png|jpe?g|webp)$/i;
 
 function publicFileExists(publicPath: string): boolean {
   return fs.existsSync(path.join(PUBLIC_DIR, decodeURI(publicPath.split(/[?#]/)[0])));
@@ -100,6 +101,15 @@ export function validateContent(content: Content): void {
       }
     }
   }
+  content.experience.items.forEach((item, i) => {
+    const href = item.attachment?.href;
+    if (href?.startsWith("/") && !VIEWABLE_FILE.test(href.split(/[?#]/)[0])) {
+      errors.push(
+        `experience.items[${i}] "${item.company}".attachment.href: "${href}" must be a .pdf, .png, .jpg, .jpeg or .webp file so browsers can display it`,
+      );
+    }
+  });
+
   const speed = content.hero.illustration?.speed;
   if (speed !== undefined && !(speed > 0 && speed <= 10)) {
     errors.push(`hero.illustration.speed: ${speed} must be between 0 (exclusive) and 10`);
